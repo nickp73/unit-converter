@@ -25,39 +25,51 @@ describe('Unit Tests', () => {
 });
 
 // Integration Test for the DOM interaction
-describe('Integration Test', () => {
-  test('should update conversion results when the convert button is clicked', () => {
+describe('Integration Tests', () => {
+  beforeEach(() => {
+    // Load the HTML file's content into JSDOM before each test
     const html = fs.readFileSync(
       path.resolve(__dirname, './index.html'),
       'utf8'
     );
     document.body.innerHTML = html;
-
-    // The 'jest' object is a global provided by the test runner.
-    // We use jest.isolateModules to ensure a fresh, non-cached version of our script
-    // runs against the new DOM we just loaded.
+    // Isolate modules to ensure a fresh script runs for each test
     jest.isolateModules(() => {
       require('./index.js');
-
-      const convertBtn = document.getElementById('convert-btn');
-      const inputEl = document.getElementById('input-el');
-      const lengthEl = document.getElementById('length-el');
-      const volumeEl = document.getElementById('volume-el');
-      const massEl = document.getElementById('mass-el');
-
-      inputEl.value = '10';
-      convertBtn.click();
-
-      // Assertions with corrected values
-      expect(lengthEl.textContent).toBe(
-        '10 metres = 32.810 feet | 10 feet = 3.048 metres'
-      );
-      expect(volumeEl.textContent).toBe(
-        '10 litres = 2.640 gallons | 10 gallons = 37.879 litres'
-      );
-      expect(massEl.textContent).toBe(
-        '10 kilos = 22.040 pounds | 10 pounds = 4.537 kilos'
-      );
     });
+  });
+
+  test('should start with empty input and result fields', () => {
+    const inputEl = document.getElementById('input-el');
+    const lengthEl = document.getElementById('length-el');
+    const volumeEl = document.getElementById('volume-el');
+    const massEl = document.getElementById('mass-el');
+
+    expect(inputEl.value).toBe('');
+    expect(lengthEl.textContent).toBe('');
+    expect(volumeEl.textContent).toBe('');
+    expect(massEl.textContent).toBe('');
+  });
+
+  test('should update conversion results when the convert button is clicked', () => {
+    const convertBtn = document.getElementById('convert-btn');
+    const inputEl = document.getElementById('input-el');
+    const lengthEl = document.getElementById('length-el');
+    const volumeEl = document.getElementById('volume-el');
+    const massEl = document.getElementById('mass-el');
+
+    inputEl.value = '10';
+    convertBtn.click();
+
+    // Assertions with corrected values
+    expect(lengthEl.textContent).toBe(
+      '10 metres = 32.810 feet | 10 feet = 3.048 metres'
+    );
+    expect(volumeEl.textContent).toBe(
+      '10 litres = 2.640 gallons | 10 gallons = 37.879 litres'
+    );
+    expect(massEl.textContent).toBe(
+      '10 kilos = 22.040 pounds | 10 pounds = 4.537 kilos'
+    );
   });
 });

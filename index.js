@@ -39,9 +39,6 @@ if (typeof document !== 'undefined') {
     }
 
     convertBtn.addEventListener('click', renderConversions);
-
-    // Initial render for the default value
-    renderConversions();
   }
 }
 
