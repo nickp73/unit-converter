@@ -8,47 +8,56 @@ const path = require('path');
 
 // Unit Tests for the conversion logic
 describe('Unit Tests', () => {
-    test('converts 20 meters and feet correctly', () => {
-        const expected = "20 meters = 65.620 feet | 20 feet = 6.096 meters";
-        expect(convertLength(20)).toBe(expected);
-    });
+  test('converts 20 metres and feet correctly', () => {
+    const expected = '20 metres = 65.620 feet | 20 feet = 6.096 metres';
+    expect(convertLength(20)).toBe(expected);
+  });
 
-    test('converts 20 liters and gallons correctly', () => {
-        const expected = "20 liters = 5.280 gallons | 20 gallons = 75.758 liters";
-        expect(convertVolume(20)).toBe(expected);
-    });
+  test('converts 20 litres and gallons correctly', () => {
+    const expected = '20 litres = 5.280 gallons | 20 gallons = 75.758 litres';
+    expect(convertVolume(20)).toBe(expected);
+  });
 
-    test('converts 20 kilograms and pounds correctly', () => {
-        const expected = "20 kilos = 44.080 pounds | 20 pounds = 9.074 kilos";
-        expect(convertMass(20)).toBe(expected);
-    });
+  test('converts 20 kilograms and pounds correctly', () => {
+    const expected = '20 kilos = 44.080 pounds | 20 pounds = 9.074 kilos';
+    expect(convertMass(20)).toBe(expected);
+  });
 });
 
 // Integration Test for the DOM interaction
 describe('Integration Test', () => {
-    test('should update conversion results when the convert button is clicked', () => {
-        const html = fs.readFileSync(path.resolve(__dirname, './index.html'), 'utf8');
-        document.body.innerHTML = html;
+  test('should update conversion results when the convert button is clicked', () => {
+    const html = fs.readFileSync(
+      path.resolve(__dirname, './index.html'),
+      'utf8'
+    );
+    document.body.innerHTML = html;
 
-        // The 'jest' object is a global provided by the test runner.
-        // We use jest.isolateModules to ensure a fresh, non-cached version of our script
-        // runs against the new DOM we just loaded.
-        jest.isolateModules(() => {
-            require('./index.js');
+    // The 'jest' object is a global provided by the test runner.
+    // We use jest.isolateModules to ensure a fresh, non-cached version of our script
+    // runs against the new DOM we just loaded.
+    jest.isolateModules(() => {
+      require('./index.js');
 
-            const convertBtn = document.getElementById('convert-btn');
-            const inputEl = document.getElementById('input-el');
-            const lengthEl = document.getElementById('length-el');
-            const volumeEl = document.getElementById('volume-el');
-            const massEl = document.getElementById('mass-el');
+      const convertBtn = document.getElementById('convert-btn');
+      const inputEl = document.getElementById('input-el');
+      const lengthEl = document.getElementById('length-el');
+      const volumeEl = document.getElementById('volume-el');
+      const massEl = document.getElementById('mass-el');
 
-            inputEl.value = "10";
-            convertBtn.click();
+      inputEl.value = '10';
+      convertBtn.click();
 
-            // Assertions with corrected values
-            expect(lengthEl.textContent).toBe("10 meters = 32.810 feet | 10 feet = 3.048 meters");
-            expect(volumeEl.textContent).toBe("10 liters = 2.640 gallons | 10 gallons = 37.879 liters");
-            expect(massEl.textContent).toBe("10 kilos = 22.040 pounds | 10 pounds = 4.537 kilos");
-        });
+      // Assertions with corrected values
+      expect(lengthEl.textContent).toBe(
+        '10 metres = 32.810 feet | 10 feet = 3.048 metres'
+      );
+      expect(volumeEl.textContent).toBe(
+        '10 litres = 2.640 gallons | 10 gallons = 37.879 litres'
+      );
+      expect(massEl.textContent).toBe(
+        '10 kilos = 22.040 pounds | 10 pounds = 4.537 kilos'
+      );
     });
+  });
 });
