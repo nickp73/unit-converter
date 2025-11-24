@@ -1,11 +1,10 @@
-// --- Configuration ---
+
 const CONVERSIONS = {
     length: { factor: 3.281, unitA: 'metre', unitB: 'foot', unitBPlural: 'feet' },
     volume: { factor: 0.264, unitA: 'litre', unitB: 'gallon', unitBPlural: 'gallons' },
     mass: { factor: 2.204, unitA: 'kilo', unitB: 'pound', unitBPlural: 'pounds' }
 };
 
-// --- Generic Conversion Logic ---
 function generateConversionString(value, config) {
     const { factor, unitA, unitB, unitBPlural } = config;
 
@@ -36,7 +35,7 @@ function convertMass(value) {
     return generateConversionString(value, CONVERSIONS.mass);
 }
 
-// --- DOM Manipulation (no changes needed here) ---
+
 if (typeof document !== 'undefined') {
   const inputEl = document.getElementById('input-el');
   const lengthEl = document.getElementById('length-el');
