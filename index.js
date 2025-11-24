@@ -4,21 +4,42 @@ const kiloToPound = 2.204;
 
 // Conversion Functions
 function convertLength(value) {
-  const metresToFeet = (value * metreToFeet).toFixed(3);
-  const feetToMetres = (value / metreToFeet).toFixed(3);
-  return `${value} metres = ${metresToFeet} feet | ${value} feet = ${feetToMetres} metres`;
+    const metresToFeetVal = value * metreToFeet;
+    const feetToMetresVal = value / metreToFeet;
+
+    const inputMetreLabel = value === 1 ? 'metre' : 'metres';
+    const outputFeetLabel = metresToFeetVal.toFixed(3) === '1.000' ? 'foot' : 'feet';
+
+    const inputFootLabel = value === 1 ? 'foot' : 'feet';
+    const outputMetreLabel = feetToMetresVal.toFixed(3) === '1.000' ? 'metre' : 'metres';
+
+    return `${value} ${inputMetreLabel} = ${metresToFeetVal.toFixed(3)} ${outputFeetLabel} | ${value} ${inputFootLabel} = ${feetToMetresVal.toFixed(3)} ${outputMetreLabel}`;
 }
 
 function convertVolume(value) {
-  const litresToGallons = (value * litreToGallon).toFixed(3);
-  const gallonsToLitres = (value / litreToGallon).toFixed(3);
-  return `${value} litres = ${litresToGallons} gallons | ${value} gallons = ${gallonsToLitres} litres`;
+    const litresToGallonsVal = value * litreToGallon;
+    const gallonsToLitresVal = value / litreToGallon;
+
+    const inputLitreLabel = value === 1 ? 'litre' : 'litres';
+    const outputGallonLabel = litresToGallonsVal.toFixed(3) === '1.000' ? 'gallon' : 'gallons';
+
+    const inputGallonLabel = value === 1 ? 'gallon' : 'gallons';
+    const outputLitreLabel = gallonsToLitresVal.toFixed(3) === '1.000' ? 'litre' : 'litres';
+
+    return `${value} ${inputLitreLabel} = ${litresToGallonsVal.toFixed(3)} ${outputGallonLabel} | ${value} ${inputGallonLabel} = ${gallonsToLitresVal.toFixed(3)} ${outputLitreLabel}`;
 }
 
 function convertMass(value) {
-  const kilosToPounds = (value * kiloToPound).toFixed(3);
-  const poundsToKilos = (value / kiloToPound).toFixed(3);
-  return `${value} kilos = ${kilosToPounds} pounds | ${value} pounds = ${poundsToKilos} kilos`;
+    const kilosToPoundsVal = value * kiloToPound;
+    const poundsToKilosVal = value / kiloToPound;
+
+    const inputKiloLabel = value === 1 ? 'kilo' : 'kilos';
+    const outputPoundLabel = kilosToPoundsVal.toFixed(3) === '1.000' ? 'pound' : 'pounds';
+
+    const inputPoundLabel = value === 1 ? 'pound' : 'pounds';
+    const outputKiloLabel = poundsToKilosVal.toFixed(3) === '1.000' ? 'kilo' : 'kilos';
+
+    return `${value} ${inputKiloLabel} = ${kilosToPoundsVal.toFixed(3)} ${outputPoundLabel} | ${value} ${inputPoundLabel} = ${poundsToKilosVal.toFixed(3)} ${outputKiloLabel}`;
 }
 
 // DOM Manipulation (only if in a browser environment)
