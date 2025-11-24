@@ -32,7 +32,7 @@ describe('Integration Tests', () => {
       path.resolve(__dirname, './index.html'),
       'utf8'
     );
-    document.body.innerHTML = html;
+    document.documentElement.innerHTML = html;
     // Isolate modules to ensure a fresh script runs for each test
     jest.isolateModules(() => {
       require('./index.js');
