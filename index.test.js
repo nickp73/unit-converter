@@ -5,6 +5,7 @@
 const { convertLength, convertVolume, convertMass } = require('./index');
 const fs = require('fs');
 const path = require('path');
+const { fireEvent } = require('@testing-library/dom');
 
 // Unit Tests for the conversion logic
 describe('Unit Tests', () => {
@@ -46,41 +47,26 @@ describe('Unit Tests', () => {
 // Integration Test for the DOM interaction
 describe('Integration Tests', () => {
   beforeEach(() => {
-    // Load the HTML file's content into JSDOM before each test
     const html = fs.readFileSync(
       path.resolve(__dirname, './index.html'),
       'utf8'
     );
-    document.documentElement.innerHTML = html;
-    // Isolate modules to ensure a fresh script runs for each test
+    document.body.innerHTML = html;
     jest.isolateModules(() => {
       require('./index.js');
     });
   });
 
-  test('should start with empty input and result fields', () => {
+  test('should update conversion results when the user types in the input', () => {
     const inputEl = document.getElementById('input-el');
     const lengthEl = document.getElementById('length-el');
     const volumeEl = document.getElementById('volume-el');
     const massEl = document.getElementById('mass-el');
 
-    expect(inputEl.value).toBe('');
-    expect(lengthEl.textContent).toBe('');
-    expect(volumeEl.textContent).toBe('');
-    expect(massEl.textContent).toBe('');
-  });
+    // Simulate a user typing '10' into the input field
+    fireEvent.input(inputEl, { target: { value: '10' } });
 
-  test('should update conversion results when the convert button is clicked', () => {
-    const convertBtn = document.getElementById('convert-btn');
-    const inputEl = document.getElementById('input-el');
-    const lengthEl = document.getElementById('length-el');
-    const volumeEl = document.getElementById('volume-el');
-    const massEl = document.getElementById('mass-el');
-
-    inputEl.value = '10';
-    convertBtn.click();
-
-    // Assertions with corrected values
+    // Assertions
     expect(lengthEl.textContent).toBe(
       '10 metres = 32.810 feet | 10 feet = 3.048 metres'
     );

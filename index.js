@@ -1,69 +1,62 @@
-const metreToFeet = 3.281;
-const litreToGallon = 0.264;
-const kiloToPound = 2.204;
+// --- Configuration ---
+const CONVERSIONS = {
+    length: { factor: 3.281, unitA: 'metre', unitB: 'foot', unitBPlural: 'feet' },
+    volume: { factor: 0.264, unitA: 'litre', unitB: 'gallon', unitBPlural: 'gallons' },
+    mass: { factor: 2.204, unitA: 'kilo', unitB: 'pound', unitBPlural: 'pounds' }
+};
 
-// Conversion Functions
+// --- Generic Conversion Logic ---
+function generateConversionString(value, config) {
+    const { factor, unitA, unitB, unitBPlural } = config;
+
+    const aToB = value * factor;
+    const bToA = value / factor;
+
+    // Determine labels for the first half of the string (e.g., "1 metre = 3.281 feet")
+    const inputLabelA = value === 1 ? unitA : `${unitA}s`;
+    const outputLabelB = aToB.toFixed(3) === '1.000' ? unitB : unitBPlural;
+
+    // Determine labels for the second half of the string (e.g., "1 foot = 0.305 metres")
+    const inputLabelB = value === 1 ? unitB : unitBPlural;
+    const outputLabelA = bToA.toFixed(3) === '1.000' ? unitA : `${unitA}s`;
+
+    return `${value} ${inputLabelA} = ${aToB.toFixed(3)} ${outputLabelB} | ${value} ${inputLabelB} = ${bToA.toFixed(3)} ${outputLabelA}`;
+}
+
+// --- Specific Conversion Functions (now simplified) ---
 function convertLength(value) {
-    const metresToFeetVal = value * metreToFeet;
-    const feetToMetresVal = value / metreToFeet;
-
-    const inputMetreLabel = value === 1 ? 'metre' : 'metres';
-    const outputFeetLabel = metresToFeetVal.toFixed(3) === '1.000' ? 'foot' : 'feet';
-
-    const inputFootLabel = value === 1 ? 'foot' : 'feet';
-    const outputMetreLabel = feetToMetresVal.toFixed(3) === '1.000' ? 'metre' : 'metres';
-
-    return `${value} ${inputMetreLabel} = ${metresToFeetVal.toFixed(3)} ${outputFeetLabel} | ${value} ${inputFootLabel} = ${feetToMetresVal.toFixed(3)} ${outputMetreLabel}`;
+    return generateConversionString(value, CONVERSIONS.length);
 }
 
 function convertVolume(value) {
-    const litresToGallonsVal = value * litreToGallon;
-    const gallonsToLitresVal = value / litreToGallon;
-
-    const inputLitreLabel = value === 1 ? 'litre' : 'litres';
-    const outputGallonLabel = litresToGallonsVal.toFixed(3) === '1.000' ? 'gallon' : 'gallons';
-
-    const inputGallonLabel = value === 1 ? 'gallon' : 'gallons';
-    const outputLitreLabel = gallonsToLitresVal.toFixed(3) === '1.000' ? 'litre' : 'litres';
-
-    return `${value} ${inputLitreLabel} = ${litresToGallonsVal.toFixed(3)} ${outputGallonLabel} | ${value} ${inputGallonLabel} = ${gallonsToLitresVal.toFixed(3)} ${outputLitreLabel}`;
+    return generateConversionString(value, CONVERSIONS.volume);
 }
 
 function convertMass(value) {
-    const kilosToPoundsVal = value * kiloToPound;
-    const poundsToKilosVal = value / kiloToPound;
-
-    const inputKiloLabel = value === 1 ? 'kilo' : 'kilos';
-    const outputPoundLabel = kilosToPoundsVal.toFixed(3) === '1.000' ? 'pound' : 'pounds';
-
-    const inputPoundLabel = value === 1 ? 'pound' : 'pounds';
-    const outputKiloLabel = poundsToKilosVal.toFixed(3) === '1.000' ? 'kilo' : 'kilos';
-
-    return `${value} ${inputKiloLabel} = ${kilosToPoundsVal.toFixed(3)} ${outputPoundLabel} | ${value} ${inputPoundLabel} = ${poundsToKilosVal.toFixed(3)} ${outputKiloLabel}`;
+    return generateConversionString(value, CONVERSIONS.mass);
 }
 
-// DOM Manipulation (only if in a browser environment)
+// --- DOM Manipulation (no changes needed here) ---
 if (typeof document !== 'undefined') {
   const inputEl = document.getElementById('input-el');
-  const convertBtn = document.getElementById('convert-btn');
   const lengthEl = document.getElementById('length-el');
   const volumeEl = document.getElementById('volume-el');
   const massEl = document.getElementById('mass-el');
 
-  // Only proceed if all required elements are found on the page
-  if (inputEl && convertBtn && lengthEl && volumeEl && massEl) {
+  if (inputEl && lengthEl && volumeEl && massEl) {
     function renderConversions() {
-      const baseValue = Number(inputEl.value);
+      const baseValue = inputEl.value ? Number(inputEl.value) : 0;
       lengthEl.textContent = convertLength(baseValue);
       volumeEl.textContent = convertVolume(baseValue);
       massEl.textContent = convertMass(baseValue);
     }
 
-    convertBtn.addEventListener('click', renderConversions);
+    inputEl.addEventListener('input', renderConversions);
+    renderConversions();
   }
 }
 
-// Export functions for testing
+// --- Exports for Testing ---
 module.exports = {
   convertLength,
   convertVolume,
