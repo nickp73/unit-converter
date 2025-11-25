@@ -9,39 +9,39 @@ const { fireEvent } = require('@testing-library/dom');
 
 // Unit Tests for the conversion logic
 describe('Unit Tests', () => {
-    describe('Plural cases', () => {
-        test('converts 20 metres and feet correctly', () => {
-            const expected = '20 metres = 65.620 feet | 20 feet = 6.096 metres';
-            expect(convertLength(20)).toBe(expected);
-        });
-
-        test('converts 20 litres and gallons correctly', () => {
-            const expected = '20 litres = 5.280 gallons | 20 gallons = 75.758 litres';
-            expect(convertVolume(20)).toBe(expected);
-        });
-
-        test('converts 20 kilograms and pounds correctly', () => {
-            const expected = '20 kilos = 44.080 pounds | 20 pounds = 9.074 kilos';
-            expect(convertMass(20)).toBe(expected);
-        });
+  describe('Plural cases', () => {
+    test('converts 20 metres and feet correctly', () => {
+      const expected = '20 metres = 65.620 feet | 20 feet = 6.096 metres';
+      expect(convertLength(20)).toBe(expected);
     });
 
-    describe('Singular cases', () => {
-        test('converts 1 metre and foot correctly', () => {
-            const expected = '1 metre = 3.281 feet | 1 foot = 0.305 metres';
-            expect(convertLength(1)).toBe(expected);
-        });
-
-        test('converts 1 litre and gallon correctly', () => {
-            const expected = '1 litre = 0.264 gallons | 1 gallon = 3.788 litres';
-            expect(convertVolume(1)).toBe(expected);
-        });
-
-        test('converts 1 kilo and pound correctly', () => {
-            const expected = '1 kilo = 2.204 pounds | 1 pound = 0.454 kilos';
-            expect(convertMass(1)).toBe(expected);
-        });
+    test('converts 20 litres and gallons correctly', () => {
+      const expected = '20 litres = 5.280 gallons | 20 gallons = 75.758 litres';
+      expect(convertVolume(20)).toBe(expected);
     });
+
+    test('converts 20 kilograms and pounds correctly', () => {
+      const expected = '20 kilos = 44.080 pounds | 20 pounds = 9.074 kilos';
+      expect(convertMass(20)).toBe(expected);
+    });
+  });
+
+  describe('Singular cases', () => {
+    test('converts 1 metre and foot correctly', () => {
+      const expected = '1 metre = 3.281 feet | 1 foot = 0.305 metres';
+      expect(convertLength(1)).toBe(expected);
+    });
+
+    test('converts 1 litre and gallon correctly', () => {
+      const expected = '1 litre = 0.264 gallons | 1 gallon = 3.788 litres';
+      expect(convertVolume(1)).toBe(expected);
+    });
+
+    test('converts 1 kilo and pound correctly', () => {
+      const expected = '1 kilo = 2.204 pounds | 1 pound = 0.454 kilos';
+      expect(convertMass(1)).toBe(expected);
+    });
+  });
 });
 
 // Integration Test for the DOM interaction

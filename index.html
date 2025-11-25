@@ -1,40 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Metric/Imperial Unit Conversion</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="index.css">
-</head>
-<body>
-<div class="container">
-	<header>
-		<h1>Metric/Imperial Unit Conversion</h1>
-		<div class="input-group">
-			<input type="number" id="input-el" value="0">
-		</div>
-	</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple Metric/Imperial unit converter for length, volume, and mass with instant results."
+    />
+    <title>Metric/Imperial Unit Conversion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Metric/Imperial Unit Conversion</h1>
+        <div class="input-group">
+          <label for="input-el" class="visually-hidden"
+            >Enter a base value for conversion</label
+          >
+          <input
+            type="number"
+            id="input-el"
+            value="0"
+            inputmode="decimal"
+            step="any"
+            aria-describedby="length-el volume-el mass-el"
+            aria-label="Base value for unit conversion"
+          />
+        </div>
+      </header>
 
-	<main>
-		<div class="card">
-			<h2>📏 Length (Metres/Feet)</h2>
-			<p id="length-el"></p>
-		</div>
+      <main>
+        <div class="card">
+          <h2>📏 Length (Metres/Feet)</h2>
+          <p id="length-el"></p>
+        </div>
 
-		<div class="card">
-			<h2>💧 Volume (Litres/Gallons)</h2>
-			<p id="volume-el"></p>
-		</div>
+        <div class="card">
+          <h2>💧 Volume (Litres/Gallons)</h2>
+          <p id="volume-el"></p>
+        </div>
 
-		<div class="card">
-			<h2>⚖️ Mass (Kilograms/Pounds)</h2>
-			<p id="mass-el"></p>
-		</div>
-	</main>
-</div>
-<script src="index.js"></script>
-</body>
+        <div class="card">
+          <h2>⚖️ Mass (Kilograms/Pounds)</h2>
+          <p id="mass-el"></p>
+        </div>
+      </main>
+    </div>
+    <script src="index.js"></script>
+  </body>
 </html>

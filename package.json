@@ -1,13 +1,16 @@
 {
   "name": "unitConverterTwo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple Metric/Imperial unit converter with tests and Prettier formatting.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "private": true,
+  "license": "MIT",
+  "author": "",
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "jest": "^30.2.0",

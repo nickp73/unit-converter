@@ -8,27 +8,27 @@ A simple and responsive web application for converting units between the metric 
 
 ## Features
 
--   **Responsive Design**: The layout adapts to different screen sizes, from mobile phones to desktops.
--   **Live Conversion**: Instantly converts values for length, volume, and mass.
--   **Interactive UI**: Clean and modern user interface with hover effects and subtle animations.
--   **Tested Code**: The conversion logic is validated by a suite of unit and integration tests using Jest.
--   **Formatted Code**: Codebase is kept clean and consistent with Prettier.
+- **Responsive Design**: The layout adapts to different screen sizes, from mobile phones to desktops.
+- **Live Conversion**: Instantly converts values for length, volume, and mass.
+- **Interactive UI**: Clean and modern user interface with hover effects and subtle animations.
+- **Tested Code**: The conversion logic is validated by a suite of unit and integration tests using Jest.
+- **Formatted Code**: Codebase is kept clean and consistent with Prettier.
 
 ### Conversions Supported
 
--   **Length**: Meters to Feet & Feet to Meters
--   **Volume**: Liters to Gallons & Gallons to Liters
--   **Mass**: Kilograms to Pounds & Pounds to Kilograms
+- **Length**: Meters to Feet & Feet to Meters
+- **Volume**: Liters to Gallons & Gallons to Liters
+- **Mass**: Kilograms to Pounds & Pounds to Kilograms
 
 ---
 
 ## Tech Stack
 
--   **HTML5**
--   **CSS3**
--   **JavaScript (ES6+)**
--   **Jest**: For automated testing.
--   **Prettier**: For code formatting.
+- **HTML5**
+- **CSS3**
+- **JavaScript (ES6+)**
+- **Jest**: For automated testing.
+- **Prettier**: For code formatting.
 
 ---
 
